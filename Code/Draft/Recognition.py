@@ -3,33 +3,47 @@ import pytesseract
 import math
 import numpy as np
 
-array_image = cv2.imread('C:/Users/User/PythonProjects/VehicleAccessControlComplex/sources/test.png')
+array_image = cv2.imread('C:/Users/User/PythonProjects/VehicleAccessControlComplex/Sources/Media/DetectedCarPlateFrames/PlateFrame1029.png')
 turn_angle = int(math.degrees(math.atan((array_image.shape[0] - 30) / array_image.shape[1])))
 print(turn_angle)
 (h, w) = array_image.shape[:2]
 center = (int(w / 2), int(h / 2))
 rotation_matrix = cv2.getRotationMatrix2D(center, turn_angle, scale = 1)
-rotated = cv2.warpAffine(array_image, rotation_matrix, (w, h))[array_image.shape[0] // 2 - 20 : array_image.shape[0] // 2 + 20, :]
-fpart = rotated[:, :-45]
-cv2.imwrite('C:/Users/User/PythonProjects/VehicleAccessControlComplex/sources/res.png', fpart)
-ar_trim = np.linspace(0, fpart.shape[1], 7, dtype = int)
-for ind in range(len(ar_trim) - 1):
-    # if ar_trim[ind] != 0: fp = ar_trim[ind] - 5
-    # else: fp = 0
-    fpart1 = fpart.copy()
-    fpart1[:, ar_trim[ind + 1]:] = 0
-    fpart1[:, :ar_trim[ind]] = 0
-    cv2.imwrite('C:/Users/User/PythonProjects/VehicleAccessControlComplex/sources/{}.png'.format(ind), fpart1)
-    result = pytesseract.image_to_string(fpart1, config = r"--oem 3 --psm 11 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
-    print(result)
-    result = pytesseract.image_to_string(fpart1, config = r"--oem 3 --psm 7 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
-    print(result)
-    result = pytesseract.image_to_string(fpart1, config = r"--oem 3 --psm 13 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
-    print(result)
-    result = pytesseract.image_to_string(fpart1, config = r"--oem 3 --psm 12 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
-    print(result)
-    print(ind)
-    print('-----------------------------')
+rotated = cv2.warpAffine(array_image, rotation_matrix, (w, h))[array_image.shape[0] // 2 - 15 : array_image.shape[0] // 2 + 15, :]
+# rotated = rotated[:, -40:]
+cv2.imwrite('C:/Users/User/PythonProjects/VehicleAccessControlComplex/Sources/Media/res.png', rotated)
+result = pytesseract.image_to_string(rotated, lang = 'eng', config = r"--oem 3 --psm 11 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
+print(result)
+result = pytesseract.image_to_string(rotated, lang = 'eng', config = r"--oem 3 --psm 7 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
+print(result)
+result = pytesseract.image_to_string(rotated, lang = 'eng', config = r"--oem 3 --psm 13 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
+print(result)
+result = pytesseract.image_to_string(rotated, lang = 'eng', config = r"--oem 3 --psm 12 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
+print(result)
+
+
+
+# Побуквенное выделение
+# ar_trim = np.linspace(0, fpart.shape[1], 7, dtype = int)
+# for ind in range(len(ar_trim) - 1):
+#     # if ar_trim[ind] != 0: fp = ar_trim[ind] - 5
+#     # else: fp = 0
+#     fpart1 = fpart.copy()
+#     fpart1[:, ar_trim[ind + 1]:] = 0
+#     fpart1[:, :ar_trim[ind]] = 0
+#     cv2.imwrite('C:/Users/User/PythonProjects/VehicleAccessControlComplex/sources/{}.png'.format(ind), fpart1)
+#     result = pytesseract.image_to_string(fpart1, config = r"--oem 3 --psm 11 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
+#     print(result)
+#     result = pytesseract.image_to_string(fpart1, config = r"--oem 3 --psm 7 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
+#     print(result)
+#     result = pytesseract.image_to_string(fpart1, config = r"--oem 3 --psm 13 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
+#     print(result)
+#     result = pytesseract.image_to_string(fpart1, config = r"--oem 3 --psm 12 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
+#     print(result)
+#     print(ind)
+#     print('-----------------------------')
+
+
 
 # Поворот изображения
 # array_image = cv2.imread('C:/Users/User/PythonProjects/VehicleAccessControlComplex/sources/frame0911.png')
@@ -43,7 +57,7 @@ for ind in range(len(ar_trim) - 1):
 
 
 # Решительный вариант детекции
-# image = cv2.imread('C:/Users/User/PythonProjects/VehicleAccessControlComplex/sources/frame091.png')
+# image = cv2.imread('C:/Users/User/PythonProjects/VehicleAccessControlComplex/Sources/Media/DetectedCarPlateFrames/PlateFrame361.png')
 # result = pytesseract.image_to_string(image, lang = 'eng', config = r"--oem 3 --psm 11 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
 # print(result)
 # result = pytesseract.image_to_string(image, lang = 'eng', config = r"--oem 3 --psm 7 -c tessedit_char_whitelist=ABCEHKMOPTXY0123456789")
