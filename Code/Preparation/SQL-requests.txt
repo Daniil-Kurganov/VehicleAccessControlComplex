@@ -1,0 +1,12 @@
+Создание:
+CREATE TABLE vacc(
+	id BIGINT PRIMARY KEY NOT NULL,
+	car_plate_number VARCHAR(7) NOT NULL,
+	expiration_date DATE NOT NULL
+)
+
+Заполнение:
+INSERT INTO public.vacc(id, car_plate_number, expiration_date)
+VALUES (1, 'X343TT161', '30-01-2025');
+INSERT INTO vacc(id, car_plate_number, expiration_date)
+VALUES (2, 'O069AM761', '30-01-2025');
