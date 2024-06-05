@@ -105,5 +105,5 @@ model_detect = YOLO('/content/best.pt')
 model.fuse()
 model_detect.fuse()
 int_counter_seved_frames = 0
-results_detect, results = process_video_with_tracking(model, "TestVideo2.mp4", show_video=False, save_video=True,
+results_detect, results = process_video_with_tracking(model, "2.mp4", show_video=False, save_video=True,
                                                       output_video_path="ResultVideo2.mp4")
