@@ -1,6 +1,5 @@
 import math
 import cv2
-
 from GUI import *
 
 def current_camera_video_show() -> None:
@@ -37,16 +36,25 @@ def show_car_plate_number() -> None:
         ui.LabelTraficLights.setPixmap(QtGui.QPixmap.fromImage(qimages_TF[1]))
         ui.LabelPlateNumberFrame.setPixmap(QtGui.QPixmap.fromImage(preparing_car_plate_frame(0)))
         ui.LabelTraficLights.setPixmap(QtGui.QPixmap.fromImage(qimages_TF[2]))
+        ui.TableWidget.setRowCount(1)
+        ui.TableWidget.setItem(0, 0, QtWidgets.QTableWidgetItem("X343TT161"))
+        ui.TableWidget.setItem(0, 1, QtWidgets.QTableWidgetItem("Доступ разрешён"))
         ui.timer_TF.setInterval(48000)
     elif count_of_frame_show == 1:
         ui.LabelTraficLights.setPixmap(QtGui.QPixmap.fromImage(qimages_TF[1]))
         ui.LabelPlateNumberFrame.setPixmap(QtGui.QPixmap.fromImage(preparing_car_plate_frame(1)))
         ui.LabelTraficLights.setPixmap(QtGui.QPixmap.fromImage(qimages_TF[0]))
+        ui.TableWidget.setRowCount(2)
+        ui.TableWidget.setItem(1, 0, QtWidgets.QTableWidgetItem("A318KM761"))
+        ui.TableWidget.setItem(1, 1, QtWidgets.QTableWidgetItem("Доступ запрещён"))
         ui.timer_TF.setInterval(70000)
     else:
         ui.LabelTraficLights.setPixmap(QtGui.QPixmap.fromImage(qimages_TF[1]))
         ui.LabelPlateNumberFrame.setPixmap(QtGui.QPixmap.fromImage(preparing_car_plate_frame(2)))
         ui.LabelTraficLights.setPixmap(QtGui.QPixmap.fromImage(qimages_TF[2]))
+        ui.TableWidget.setRowCount(3)
+        ui.TableWidget.setItem(2, 0, QtWidgets.QTableWidgetItem("O069AM761"))
+        ui.TableWidget.setItem(2, 1, QtWidgets.QTableWidgetItem("Доступ разрешён"))
     count_of_frame_show += 1
     ui.timer_close = QtCore.QTimer()
     ui.timer_close.setInterval(5000)
