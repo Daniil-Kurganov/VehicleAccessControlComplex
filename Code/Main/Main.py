@@ -48,6 +48,14 @@ def show_car_plate_number() -> None:
         ui.LabelPlateNumberFrame.setPixmap(QtGui.QPixmap.fromImage(preparing_car_plate_frame(2)))
         ui.LabelTraficLights.setPixmap(QtGui.QPixmap.fromImage(qimages_TF[2]))
     count_of_frame_show += 1
+    ui.timer_close = QtCore.QTimer()
+    ui.timer_close.setInterval(5000)
+    ui.timer_close.timeout.connect(close_barrier)
+    ui.timer_close.start()
+    return None
+def close_barrier() -> None:
+    '''Эмуляция закрытия шлагбаума'''
+    ui.LabelTraficLights.setPixmap(QtGui.QPixmap.fromImage(qimages_TF[0]))
     return None
 def preparing_car_plate_frame(frame_index: int) -> qimage2ndarray.array2qimage:
     '''Преобразования текущего кадра знака'''
