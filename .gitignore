@@ -2,3 +2,4 @@
 venv/
 Code/.ipynb_checkpoints/
 Sources/Media/
+Code/Main/__pycache__
