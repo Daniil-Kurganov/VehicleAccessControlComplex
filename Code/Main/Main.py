@@ -1,11 +1,5 @@
-import multiprocessing
-import time
 import math
-from tkinter import Tk
 import cv2
-import multiprocessing as mp
-
-import numpy as np
 
 from GUI import *
 
@@ -31,18 +25,10 @@ def start_show_camera_video() -> None:
     ui.timer.start()
     if camera_index == 2:
         count_of_frame_show = 0
-        ui.timer0 = QtCore.QTimer()
-        ui.timer0.setInterval(7000)
-        ui.timer0.timeout.connect(show_car_plate_number)
-        ui.timer0.start()
-        # ui.timer1 = QtCore.QTimer()
-        # ui.timer1.setInterval(48000)
-        # ui.timer1.timeout.connect(current_camera_video_show)
-        # ui.timer1.start()
-        # ui.timer2 = QtCore.QTimer()
-        # ui.timer2.setInterval(109000)
-        # ui.timer2.timeout.connect(current_camera_video_show)
-        # ui.timer2.start()
+        ui.timer_TF = QtCore.QTimer()
+        ui.timer_TF.setInterval(7000)
+        ui.timer_TF.timeout.connect(show_car_plate_number)
+        ui.timer_TF.start()
     return None
 def show_car_plate_number() -> None:
     '''Демонстрация распознанного знака'''
@@ -51,12 +37,12 @@ def show_car_plate_number() -> None:
         ui.LabelTraficLights.setPixmap(QtGui.QPixmap.fromImage(qimages_TF[1]))
         ui.LabelPlateNumberFrame.setPixmap(QtGui.QPixmap.fromImage(preparing_car_plate_frame(0)))
         ui.LabelTraficLights.setPixmap(QtGui.QPixmap.fromImage(qimages_TF[2]))
-        ui.timer0.setInterval(38000)
+        ui.timer_TF.setInterval(48000)
     elif count_of_frame_show == 1:
         ui.LabelTraficLights.setPixmap(QtGui.QPixmap.fromImage(qimages_TF[1]))
         ui.LabelPlateNumberFrame.setPixmap(QtGui.QPixmap.fromImage(preparing_car_plate_frame(1)))
         ui.LabelTraficLights.setPixmap(QtGui.QPixmap.fromImage(qimages_TF[0]))
-        ui.timer0.setInterval(68000)
+        ui.timer_TF.setInterval(70000)
     else:
         ui.LabelTraficLights.setPixmap(QtGui.QPixmap.fromImage(qimages_TF[1]))
         ui.LabelPlateNumberFrame.setPixmap(QtGui.QPixmap.fromImage(preparing_car_plate_frame(2)))
