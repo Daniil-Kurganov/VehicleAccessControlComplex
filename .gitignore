@@ -1,5 +1,5 @@
 .idea/
 venv/
 Code/.ipynb_checkpoints/
+Code/Main/__pycache__/
 Sources/Media/
-Code/Main/__pycache__
